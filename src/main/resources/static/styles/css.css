@@ -1,0 +1,92 @@
+/*
+Author:Gabriel,
+Date:22/11/2021,
+Description: Projeto Docket
+*/
+
+header{	
+    height: 15%;
+    background-color: gray;
+    position:relative;
+    background-color:#212529;
+}
+.ocultar{
+	display:none;
+}
+.corpo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border:1px solid white;
+}
+.corpo .painel-total-cadastrados{
+    background-color:#212529;
+    width: 40%;
+    box-sizing:border-box;
+    margin-top:-38%;   
+    margin-left:1%; 
+    color:white;
+    text-align:center;
+   
+    
+}
+.corpo .painel-total-cadastrados h4{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    font-weight: bold;   
+}
+.corpo .painel-total-cadastrados .h6{
+	margin-top:1%;
+    font-weight: bold;   
+}
+.tabela{
+    width: 60%;
+    margin-left:2%;  
+    margin-top:-4%;  
+    border-box:box-sizing;
+}
+.tabela-inicial{
+	width: 60%;
+    margin-left:2%;  
+    margin-top:-13.70%;  
+    border-box:box-sizing;
+}
+.corpo .tabela-certidoes{
+	width: 70%;
+    margin-left:0;  
+    margin-top:-33.33%;  
+    border-box:box-sizing;
+}
+
+.corpo .tabela-certidoes-lista{
+	width: 70%;
+    margin-left:0;  
+    margin-top:-6%;  
+    border-box:box-sizing;
+}
+.table thead th{
+	background-color:#212529;
+	color:white;
+	padding:2%;
+}
+	.table button{    
+    margin-left:3%;
+    margin-top:-5%;
+	}
+aside{
+    width: 23%;
+    height:500px;
+    margin-top:1%;
+    
+}
+.botao-primary a {
+    text-decoration: none;
+    color: white;
+    
+}
+
+
+
+

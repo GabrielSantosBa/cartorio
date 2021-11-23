@@ -1,0 +1,222 @@
+<!-- Barra lateral com menu -->
+<aside th:fragment="barra-lateral">
+	<h1 class="visually-hidden">Sistema de Cartorio</h1>
+
+	<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+		<a href="/index"
+			class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+			<svg class="bi me-2" width="40" height="32">
+				<use xlink:href="#bootstrap" /></svg> <span class="fs-4">Cartorio</span>
+		</a>
+		<hr>
+		<!--     Menu bootstrap  -->
+		<nav class="nav-menu">
+			<ul class="nav nav-pills flex-column mb-auto">
+				<li><a th:href="@{/cartorio/}" class="nav-link text-white">Inicio</a></li>
+				<li><a th:href="@{/cartorio/cartorios}"
+					class="nav-link text-white"> Cartorios </a></li>
+				<li><a th:href="@{/certidao/}"
+					class="nav-link text-white"> Certidoes </a></li>
+
+			</ul>
+		</nav>
+		<hr>
+	</div>
+</aside>
+
+
+<!-- Tabela Corpo listagem pagina principal -->
+
+<table class="tabela-inicial table table-hover"
+	th:fragment="table-body-index">
+
+	<thead>
+		<tr>
+			<th scope="col">Certidoes Emitidas Por Cartorios</th>
+			<th scope="col">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="cartorio : ${cartorios}">
+			<td th:text="${cartorio.nome}"></td>
+			<td th:text="${cartorio.certidoes.size}"></td>
+		</tr>
+	</tbody>
+</table>
+<!-- Tabela Corpo listagem pagina cartorios -->
+<table class="tabela table table-hover"
+	th:fragment="table-body-cartorios">
+
+	<thead>
+		<tr>
+			
+			<th scope="col">Nome Cartorio</th>
+			<th scope="col">Telefone</th>
+			<th scope="col">Cidade</th>
+			<th scope="col">UF</th>
+			<th scope="col">Cep</th>
+			<th scope="col">Certidoes</th>
+			<th scope="col"></th>
+			<th scope="col">
+			
+			<button type="button" class="btn btn-primary botao-primary">
+					<a th:href="@{/cartorio/cadastrar}">
+						Novo 
+					</a>
+				</button>
+			
+			</th>
+		</tr>
+	</thead>
+	<tbody th:each="cartorio : ${cartorios}">
+		<tr>
+			
+			<td th:text="${cartorio.nome}"></td>
+			<td th:text="${cartorio.telefone}"></td>
+			<td th:text="${cartorio.endereco.cidade}"></td>
+			<td th:text="${cartorio.endereco.uf}"></td>
+			<td th:text="${cartorio.endereco.cep}"></td>
+			<td><a
+				th:href="@{/cartorio/cartorio-certidao/{id}(id=${cartorio.id})}">Certidoes</a>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary botao-primary">
+					<a th:href="@{/cartorio/atualizar/{id}(id=${cartorio.id})}">
+						Editar 
+					</a>
+				</button>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#staticBackdrop">
+					<a> 
+						<i data-bs-toggle="modal" data-bs-target="#modal-delete">
+							Excluir 
+						</i>
+					</a>					
+				</button>
+			</td>
+		</tr>
+		<!-- 		Modal -->
+		<div class="modal fade" id="modal-delete" tabindex="-1"
+			aria-labelledby="labelModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="labelModal">Confirmar
+							Cancelamento</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>Você  tem certeza que deseja excluir definitivamente esse
+							registro?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success botao-primary"
+							data-bs-dismiss="modal">
+							<a th:href="@{/cartorio/deletar/{id}(id=${cartorio.id})}">Excluir</a>
+						</button>
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+							aria-label="Close">Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</tbody>
+
+
+</table>
+<!-- Certidoes -->
+
+<!-- Tabela Corpo listagem Certidoes -->
+<table class="tabela-certidoes-lista table table-hover"
+	th:fragment="table-body-certidoes">
+
+	<thead>
+		<tr>
+			<th scope="col">Nome</th>
+			<th scope="col">Cartorio Emitente</th>
+			<th scope="col">
+				<button type="button" class="btn btn-primary botao-primary">
+					<a th:href="@{/certidao/cadastrar}">Novo</a>
+				</button>	
+			</th>
+		</tr>
+	</thead>
+	<tbody th:each="certidao : ${certidoes}">
+		<tr>
+			<td th:text="${certidao.nome}"></td>
+			<td th:text="${certidao.cartorio.nome}"></td>
+			<td>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#staticBackdrop">
+					<a> 
+						<i data-bs-toggle="modal" data-bs-target="#modal-delete">
+							Excluir 
+						</i>
+					</a>					
+				</button>
+			</td>
+			<div class="modal fade" id="modal-delete" tabindex="-1"
+			aria-labelledby="labelModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="labelModal">Confirmar
+							Cancelamento</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>Você  tem certeza que deseja excluir definitivamente esse
+							registro?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success botao-primary"
+							data-bs-dismiss="modal">
+							<a th:href="@{/certidao/deletar/{id}(id=${certidao.id})}">Excluir</a>
+						</button>
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+							aria-label="Close">Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</tr>
+	</tbody>
+</table>
+<table class="tabela-certidoes table table-hover"
+	th:fragment="table-cartorio-certidoes">
+
+	<thead>
+		<tr>
+			<th scope="col">Cod</th>
+			<th scope="col">Cartorio</th>
+			<th scope="col">Nome Certidao</th>
+			<th scope="col">
+			<button type="button" class="btn btn-primary botao-primary">
+					<a th:href="@{/cartorio/cartorios}">Voltar</a>
+				</button>	
+			</th>
+		</tr>
+	</thead>
+	<tbody th:each="cartorio : ${cartorio}">
+		<tr>
+			<td th:text="${cartorio.id}"></td>
+			<td th:text="${cartorio.nome}"></td>
+			<td>
+			<select class="chosen-select form-control">
+					<option th:each="cartorioc : ${cartorio.certidoes}" 
+					
+								th:text="${cartorioc.nome}" >
+						
+					</option>
+			</select>
+			<td>
+			
+		</tr>
+	</tbody>
+</table>
+
+

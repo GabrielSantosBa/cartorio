@@ -1,0 +1,7 @@
+
+
+
+
+1 Criar entidades(Cartorio, Certidao)
+2 Criar Endereço do cartorio a parte a fim de melhorar a organização entre classes, mas matendo na mesma tabela na base
+3 Cartorio tem relacionamento com certidão do tipo: 1 / N(Um cartorio pode emitir uma ou mais certidões) 
